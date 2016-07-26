@@ -1,0 +1,87 @@
+{
+  "name": "react-day-picker",
+  "version": "1.2.0",
+  "description": "Flexible date picker component for React",
+  "main": "DayPicker.js",
+  "style": "lib/style.css",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "clean": "rimraf lib coverage dist",
+    "lint": "eslint src test",
+    "test": "mocha --compilers js:babel/register --recursive --reporter spec",
+    "test:watch": "npm test -- --watch",
+    "cover": "istanbul cover -- _mocha --recursive --compilers js:babel/register --reporter spec",
+    "check": "npm run lint && npm run test",
+    "prerelease": "npm run check && webpack",
+    "prepublish": "babel ./src -d ./lib --source-maps && postcss --use autoprefixer src/style.css -d lib/",
+    "examples:clean": "rimraf examples/built",
+    "examples:build": "npm run examples:clean && cd examples && npm run build && cd ..",
+    "docs:clean": "rimraf _book",
+    "docs:prepare": "gitbook install",
+    "docs:build": "npm run docs:prepare && gitbook build",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:publish": "npm run docs:clean && npm run docs:build && npm run examples:build && rimraf _book/examples && mv examples/built _book/examples && cd _book && git init && git commit --allow-empty -m 'Update docs and examples' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'Update docs and examples' && git push git@github.com:gpbl/react-day-picker gh-pages --force"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gpbl/react-day-picker.git"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "component",
+    "calendar",
+    "date-picker",
+    "datepicker",
+    "date",
+    "picker",
+    "moment",
+    "momentjs"
+  ],
+  "author": {
+    "name": "Giampaolo Bellavite",
+    "email": "io@gpbl.org"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gpbl/react-day-picker/issues"
+  },
+  "homepage": "https://github.com/gpbl/react-day-picker",
+  "peerDependencies": {
+    "react": "~0.13.x || ~0.14.x"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.0.3",
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
+    "babel-eslint": "^4.0.10",
+    "chai": "^3.4.1",
+    "classlist-polyfill": "^1.0.1",
+    "coveralls": "^2.11.2",
+    "eslint": "^1.10.1",
+    "eslint-plugin-react": "^3.10.0",
+    "exenv": "^1.2.0",
+    "fbjs": "^0.4.0",
+    "gitbook-cli": "^1.0.0",
+    "istanbul": "^0.4.0",
+    "jsdom": "^7.0.2",
+    "mocha": "^2.2.5",
+    "moment": "^2.10.3",
+    "postcss-cli": "^2.3.2",
+    "react": "^0.14.2",
+    "react-addons-test-utils": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-tap-event-plugin": "^0.2.0",
+    "rimraf": "^2.4.3",
+    "sinon": "^1.17.2",
+    "sinon-chai": "^2.8.0",
+    "testdom": "^2.0.0",
+    "webpack": "^1.12.4"
+  },
+  "readme": "react-day-picker\n=======\n\n[![build status](https://img.shields.io/travis/gpbl/react-day-picker/master.svg?style=flat-square)](https://travis-ci.org/gpbl/react-day-picker)\n[![coveralls](https://img.shields.io/coveralls/gpbl/react-day-picker.svg?style=flat-square)](https://coveralls.io/r/gpbl/react-day-picker?branch=master)\n[![npm downloads](https://img.shields.io/npm/dm/react-day-picker.svg?style=flat-square)](https://www.npmjs.com/package/react-day-picker)\n[![npm version](https://img.shields.io/npm/v/react-day-picker.svg?style=flat-square)](https://www.npmjs.com/package/react-day-picker)\n[![Bower](https://img.shields.io/bower/v/react-day-picker.svg)](http://bower.io/search/?q=react-day-picker)\n\nreact-day-picker is a flexible date picker component for [React](https://facebook.github.io/react/).\n\n* select days, ranges, whatever using CSS modifiers\n* easily change style and add content to days cells\n* display multiple months\n* ready for i18n, with moment.js or any other library\n* navigable via keyboard, ARIA support\n* no external dependencies\n\n<p align=\"center\">\n<img width=\"291\" style=\"margin: 0 auto\" alt=\"screen shot 2015-11-11 at 15 51 07\" src=\"https://cloud.githubusercontent.com/assets/120693/11093859/d52e0c26-888c-11e5-917e-aaa9686dcb84.png\">\n</p>\n\n## Documentation and help\n\n* [Guides and API](http://gpbl.org/react-day-picker)\n* [Examples with code](http://gpbl.org/react-day-picker/examples)\n* [Github](https://github.com/gpbl/react-day-picker)\n* [Changelog](https://github.com/gpbl/react-day-picker/releases)\n* [Issues](https://github.com/gpbl/react-day-picker/issues)\n* [Gitter room](https://gitter.im/gpbl/react-day-picker)\n\n## Quick start\n\n**Install via npm**\n\n```\nnpm install react-day-picker --save\n```\n\nand use it in your React components:\n\n```jsx\nimport DayPicker from \"react-day-picker\";\n\nfunction isSunday(day) {\n  return day.getDay() === 0;\n}\n\nfunction MyComponent() {\n  return <DayPicker initialMonth={ new Date(2016, 1) } modifiers={{ isSunday }} />\n}\n```\n\n**Install via Bower**\n\n```\nbower install react-day-picker --save\n```\n\nThe bower package exposes a global `DayPicker` variable.\n",
+  "readmeFilename": "README.md",
+  "_id": "react-day-picker@1.2.0",
+  "_from": "react-day-picker@^1.0.4"
+}
